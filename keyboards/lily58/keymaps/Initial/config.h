@@ -20,18 +20,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-/* Select hand configuration */
+/* Select hand configuration */  
 
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 175
+#define TAPPING_TERM 200
 
 #undef RGBLED_NUM
 #define RGBLIGHT_ANIMATIONS
-#define RGBLED_NUM 27
+#define RGBLED_NUM 11
 #define RGBLIGHT_LIMIT_VAL 120
 #define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 17
@@ -39,10 +39,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_SPLIT
 
 // Underglow
-#undef RGBLED_NUM
-#define RGBLED_NUM 14    // Number of LEDs
-#define RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_SLEEP
+// #undef RGBLED_NUM
+// #define RGBLED_NUM 14    // Number of LEDs
+// #define RGBLIGHT_ANIMATIONS
+// #define RGBLIGHT_SLEE
 
 // Encoders
 #define ENCODERS_PAD_A { F4 }
