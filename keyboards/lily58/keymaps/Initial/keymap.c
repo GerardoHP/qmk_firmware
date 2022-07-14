@@ -2,6 +2,7 @@
 
 enum layer_number {
   _QWERTY = 0,
+  _DVORAK,
   _LOWER,
   _RAISE,
   _ADJUST,
@@ -11,6 +12,9 @@ enum {
   TD_ENTER_DOUBLE_SPACE = 0,
   TD_ESCAPE_CAPS,
 };
+
+#define TO_QW TO(_QWERTY)
+#define TO_DV TO(_DVORAK)
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
@@ -29,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Space \  |RAISE |BackSP| RGUI |
+ *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -42,6 +46,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,        KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS, \
   KC_LCTRL, KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,        KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
   KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_LBRC,  KC_RBRC,  KC_N, KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT, \
+  KC_LALT, KC_LGUI, MO(_LOWER), KC_SPC, KC_ENT, MO(_RAISE), KC_BSPC, KC_BSLASH \
+),
+/* DVORAK
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * | Tab  |   '  |   ,  |   .  |   P  |   Y  |                    |   F  |   G  |   C  |   R  |   L  |  /   |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |LCTRL |   A  |   O  |   E  |   U  |   I  |-------.    ,-------|   D  |   H  |   T  |   N  |   S  |  -   |
+ * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
+ * |LShift|   ;  |   Q  |   J  |   K  |   X  |-------|    |-------|   B  |   M  |   W  |   V  |   Z  |RShift|
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP|  \   |
+ *                   |      |      |      |/       /         \      \ |      |      |      |
+ *                   `----------------------------'           '------''--------------------'
+ */
+
+ [_DVORAK] = LAYOUT( \
+  TD(TD_ESCAPE_CAPS),   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                     KC_6,        KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV, \
+  KC_TAB,   KC_QUOT,   KC_COMM,    KC_DOT,    KC_P,  KC_Y,                   KC_F,  KC_G,  KC_C,  KC_R,  KC_L,    KC_SLSH, \
+  KC_LCTRL, KC_A,      KC_O,       KC_E,      KC_U,  KC_I,                   KC_D,  KC_H,  KC_T,  KC_N,  KC_S,    KC_MINS, \
+  KC_LSFT,  KC_SCLN,   KC_Q,       KC_J,      KC_K,  KC_X, KC_LBRC, KC_RBRC, KC_B,  KC_M,  KC_W,  KC_V,  KC_Z,    KC_RSFT, \
   KC_LALT, KC_LGUI, MO(_LOWER), KC_SPC, KC_ENT, MO(_RAISE), KC_BSPC, KC_BSLASH \
 ),
 /* LOWER
@@ -91,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |      |      |      |      | TO_QW|      |                    |      |TO_DV |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------.    ,-------|      |RGBTOG| HUE+ | SAT+ | VAL+ |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -103,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_ADJUST] = LAYOUT( \
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO_QW  , XXXXXXX,                   TO_DV  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, \
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX,\
                              _______, _______, _______, _______, _______,  _______, _______, _______ \
