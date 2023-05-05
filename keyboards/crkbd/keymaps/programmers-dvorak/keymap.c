@@ -23,19 +23,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const custom_shift_key_t custom_shift_keys[] = {
     { KC_DLR,       KC_TILD },
     { KC_PLUS,      KC_1 },
-    { KC_LBRACKET,  KC_2 },
+    { KC_LBRC,      KC_2 },
     { KC_LCBR,      KC_3 },
     { KC_LPRN,      KC_4 },
     { KC_AMPR,      KC_5 },
     { KC_EQUAL,     KC_6 },
     { KC_RPRN,      KC_7 },
     { KC_RCBR,      KC_8 },
-    { KC_RBRACKET,  KC_9 },
+    { KC_RBRC,      KC_9 },
     { KC_ASTR,      KC_0 },
     { KC_EXLM,      KC_PERCENT },
     { KC_PIPE,      KC_GRAVE },
     { KC_AT,        KC_CIRCUMFLEX },
-    { KC_BSLASH,    KC_HASH },
+    { KC_BSLS,    KC_HASH },
 };
 
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys)/sizeof(custom_shift_key_t);
@@ -53,7 +53,7 @@ enum crkbd_layers {
 #define ADJUST MO(_ADJUST)
 #define BASE TO(_BASE)
 #define NAVIGATION TO(_NAVIGATION)
-#define RCTRL MT(MOD_RCTL, KC_CAPSLOCK)
+#define RCTRL MT(MOD_RCTL, KC_CAPS)
 #define RSHFT MT(MOD_LSFT, KC_ESC)
 #define LSHFT MT(MOD_RSFT, KC_BSPC)
 #define MLALT  MT(MOD_RALT, KC_BSPC)
@@ -63,7 +63,7 @@ enum crkbd_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
-      KC_TAB,     KC_SCOLON,  KC_COMMA,   KC_DOT,     KC_P,       KC_Y,                              KC_F,       KC_G,       KC_C,       KC_R,       KC_L,       KC_SLASH,
+      KC_TAB,     KC_SCLN,  KC_COMMA,   KC_DOT,     KC_P,       KC_Y,                              KC_F,       KC_G,       KC_C,       KC_R,       KC_L,       KC_SLASH,
   //|-----------+-----------+-----------+----------+------------+--------|                    |----------+-------------+----------+-----------+----------+--------------|
       RCTRL,      KC_A,     KC_O,      KC_E,       KC_U,     KC_I,                           KC_D,       KC_H,       KC_T,       KC_N,       KC_S,       KC_MINUS,
   //|-----------+-----------+-----------+----------+------------+--------|                    |----------+-------------+----------+-----------+----------+--------------|
@@ -75,9 +75,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_DLR, KC_PLUS, KC_LBRACKET, KC_LCBR,  KC_LPRN,  KC_AMPR,                       KC_EQUAL,  KC_RPRN,  KC_RCBR,  KC_RBRACKET,  KC_ASTR,  KC_EXLM,
+       KC_DLR, KC_PLUS, KC_LBRC, KC_LCBR,  KC_LPRN,  KC_AMPR,                       KC_EQUAL,  KC_RPRN,  KC_RCBR,  KC_RBRC,  KC_ASTR,  KC_EXLM,
   //|--------+--------+------------+---------+---------+---------|                    |----------+---------+---------+-------------+---------+---------|
-      _______, _______,    _______,  SCRC,  SCRP,  _______,                       _______,   _______,  _______,    KC_PIPE,      KC_AT, KC_BSLASH,
+      _______, _______,    _______,  SCRC,  SCRP,  _______,                       _______,   _______,  _______,    KC_PIPE,      KC_AT, KC_BSLS,
   //|--------+--------+------------+---------+---------+---------|                    |----------+---------+---------+-------------+---------+---------|
       _______, _______,    _______,  _______,  _______,  _______,                         _______, _______,    _______,  _______,  _______,  _______,
   //|--------+--------+------------+---------+---------+---------|                    |----------+---------+---------+-------------+---------+---------|
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
         KC_F1,       KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                       KC_INS, _______,   KC_UP, _______, KC_HOME, KC_PGUP,
   //|--------+------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        KC_F7,       KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,                       KC_DEL, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END,KC_PGDOWN,
+        KC_F7,       KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,                       KC_DEL, KC_LEFT, KC_DOWN,KC_RIGHT,  KC_END,KC_PGDN,
   //|--------+------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______,     KC_RSFT, KC_LALT, _______, _______, KC_VOLD,                      KC_VOLU, KC_MPRV, KC_MPLY, KC_MNXT, _______, _______,
   //|--------+------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,NAVIGATION, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RESET,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, QK_BOOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -212,11 +212,38 @@ void oled_render_logo(void) {
 
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
-        oled_render_layer_state();
+        // set cursor position
+        oled_set_cursor(0, 1);
+
+        // caps lock status
+        led_t led_state = host_keyboard_led_state();
+        oled_write_P(led_state.caps_lock ? PSTR("Caps Lock On \n") : PSTR("Caps Lock Off \n"), false);
+
+        // switch on current active layer
+        switch(get_highest_layer(layer_state)) {
+            case _BASE:
+                oled_write("Base Layer \n", false);
+            break;
+            case _LOWER:
+                oled_write("Lower Layer \n", false);
+            break;
+            case _RAISE:
+                oled_write("Raise Layer \n", false);
+            break;
+            case _ADJUST:
+                oled_write("Adjust Layer \n", false);
+            break;
+            case _NAVIGATION:
+                oled_write("Navigation Layer \n", false);
+            break;
+        }
+
+        // set the key log
         oled_render_keylog();
-    } else {
+    }else {
         oled_render_logo();
     }
+
     return false;
 }
 
